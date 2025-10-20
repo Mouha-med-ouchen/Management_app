@@ -15,7 +15,7 @@ export default function UsersTable({ onAddUser }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        onAddUser({
+        context.AddUser({
             payload: {
                 fullname: fullname.current.value,
                 country: country.current.value,

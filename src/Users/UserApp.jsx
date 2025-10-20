@@ -3,7 +3,10 @@ import UsersLayout from './UsersLayout';
 
 export const UsersContext = createContext({
     users: [],
-    lastId: 0
+    lastId: 0,
+    AddUser: () => null,
+    updateUser: () => null,
+    deleteUser: () => null,
 });
 
 export default function UserApp() {
@@ -15,8 +18,30 @@ export default function UserApp() {
         setLastId(prev => prev + 1);
     };
 
+    const deleteUser = (id) => {
+        setUsers(prev => prev.filter(user => user.id !== id));
+        window.history.back();
+    };
+
+
+    const updateUser = (data) => {
+        const { id, ...rest } = data.payload;
+        setUsers(prev =>
+            prev.map(user =>
+                user.id === id ? { ...user, ...rest } : user
+            )
+        );
+        window.history.back()
+    };
+
     return (
-        <UsersContext.Provider value={{ users, lastId, addUser }}>
+        <UsersContext.Provider value={{
+            users,
+            lastId,
+            AddUser: addUser,
+            updateUser: updateUser,
+            deleteUser: deleteUser
+        }}>
             <UsersLayout />
         </UsersContext.Provider>
     );
