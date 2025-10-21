@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { UsersContext } from "./UserApp";
 
-export default function UsersTable({ onAddUser }) {
+export default function UsersTable() {
     const context = useContext(UsersContext)
     const fullname = useRef(null)
     const country = useRef(null)

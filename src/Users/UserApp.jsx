@@ -8,7 +8,7 @@ export const UsersContext = createContext({
     updateUser: () => null,
     deleteUser: () => null,
 
-    
+
 });
 
 export default function UserApp() {
@@ -18,10 +18,11 @@ export default function UserApp() {
     const addUser = (data) => {
         setUsers(prev => [...prev, data.payload]);
         setLastId(prev => prev + 1);
+        window.history.back();
     };
 
     const deleteUser = (id) => {
-        setUsers(prev => prev.filter(user => user.id !== id));
+        setUsers(prev => prev.filter(user => user.id !== parseInt(id)));
         window.history.back();
     };
 
